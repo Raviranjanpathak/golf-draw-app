@@ -18,8 +18,11 @@ app.use(helmet());
 
 // 🌐 CORS
 app.use(cors({
-  origin: process.env.CLIENT_URL || "http://localhost:5173",
-  credentials: true,
+  origin: [
+    "http://localhost:5173",
+    "https://golf-draw-app.vercel.app"
+  ],
+  credentials: true
 }));
 
 // 📦 Body parser
