@@ -6,10 +6,10 @@ import { checkSubscription } from "../middleware/subscription.js";
 
 const router = express.Router();
 
-// ➕ Add score
+//  Add score
 router.post("/", protect, checkSubscription, addScore);
 
-// 📊 Get scores
+//  Get scores
 router.get("/", protect, async (req, res) => {
   try {
     const scores = await Score.find({ userId: req.user._id })
@@ -22,7 +22,7 @@ router.get("/", protect, async (req, res) => {
   }
 });
 
-// 💰 Get winnings
+//  Get winnings
 router.get("/winnings", protect, getWinnings);
 
 export default router;

@@ -1,13 +1,13 @@
 import Score from "../models/Score.js";
 import User from "../models/User.js";
 
-// ➕ ADD SCORE
+//  ADD SCORE
 export const addScore = async (req, res) => {
   try {
     const { value, date } = req.body;
     const userId = req.user._id;
 
-    // ✅ Validation
+    //  Validation
     if (!value || !date) {
       return res.status(400).json({
         msg: "Value and date are required",
@@ -20,11 +20,11 @@ export const addScore = async (req, res) => {
       });
     }
 
-    // ✅ Normalize date (IMPORTANT FIX)
+    //  Normalize date (IMPORTANT FIX)
     const normalizedDate = new Date(date);
     normalizedDate.setHours(0, 0, 0, 0);
 
-    // ✅ Check duplicate (safe)
+    //  Check duplicate (safe)
     const exists = await Score.findOne({
       userId,
       date: normalizedDate,
@@ -36,14 +36,14 @@ export const addScore = async (req, res) => {
       });
     }
 
-    // ✅ Keep only last 5 scores
+    //  Keep only last 5 scores
     const scores = await Score.find({ userId }).sort({ date: 1 });
 
     if (scores.length >= 5) {
       await Score.findByIdAndDelete(scores[0]._id);
     }
 
-    // ✅ Create new score
+    //  Create new score
     const newScore = await Score.create({
       userId,
       value,
@@ -53,7 +53,7 @@ export const addScore = async (req, res) => {
     res.json(newScore);
 
   } catch (err) {
-    // ✅ Handle duplicate race condition (IMPORTANT FIX)
+    //  Handle duplicate race condition (IMPORTANT FIX)
     if (err.code === 11000) {
       return res.status(400).json({
         msg: "Score already exists for this date",
@@ -66,7 +66,7 @@ export const addScore = async (req, res) => {
 
 
 
-// 💰 GET WINNINGS (FIXED)
+//  GET WINNINGS (FIXED)
 export const getWinnings = async (req, res) => {
   try {
     const user = await User.findById(req.user._id);

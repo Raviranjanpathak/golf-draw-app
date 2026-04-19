@@ -1,18 +1,18 @@
 export const checkSubscription = (req, res, next) => {
   try {
-    // ✅ Safety check
+    //  Safety check
     if (!req.user) {
       return res.status(401).json({ msg: "Unauthorized" });
     }
 
-    // ✅ Normalize dates
+    //  Normalize dates
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
     const end = new Date(req.user.subscriptionEnd);
     end.setHours(0, 0, 0, 0);
 
-    // ✅ Conditions
+    //  Conditions
     const hasNoPlan =
       !req.user.subscription || req.user.subscription === "none";
 

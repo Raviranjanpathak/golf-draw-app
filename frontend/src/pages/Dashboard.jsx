@@ -10,7 +10,7 @@ export default function Dashboard() {
   const [winnings, setWinnings] = useState(0);
   const [loading, setLoading] = useState(false);
 
-  // 📊 Fetch scores
+  //  Fetch scores
   const fetchScores = async () => {
     try {
       const res = await API.get("/scores");
@@ -20,7 +20,7 @@ export default function Dashboard() {
     }
   };
 
-  // 💰 Fetch winnings
+  //  Fetch winnings
   const fetchWinnings = async () => {
     try {
       const res = await API.get("/scores/winnings");
@@ -30,7 +30,7 @@ export default function Dashboard() {
     }
   };
 
-  // 🔄 Load data
+  //  Load data
   useEffect(() => {
     if (user) {
       fetchScores();
@@ -38,7 +38,7 @@ export default function Dashboard() {
     }
   }, [user]);
 
-  // 💳 Buy subscription
+  //  Buy subscription
   const handleSubscription = async (plan) => {
     try {
       setLoading(true);

@@ -4,7 +4,7 @@ import User from "../models/User.js";
 
 export const runDraw = async (req, res) => {
   try {
-    // ❌ prevent multiple draws per day
+    //  prevent multiple draws per day
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
@@ -18,7 +18,7 @@ export const runDraw = async (req, res) => {
       });
     }
 
-    // ✅ Generate numbers
+    //  Generate numbers
     const numbers = [];
     while (numbers.length < 5) {
       const num = Math.floor(Math.random() * 45) + 1;
@@ -70,7 +70,7 @@ export const runDraw = async (req, res) => {
       }
     }
 
-    // ✅ bulk update winnings
+    //  bulk update winnings
     const bulkOps = winners.map((w) => ({
       updateOne: {
         filter: { _id: w.userId },

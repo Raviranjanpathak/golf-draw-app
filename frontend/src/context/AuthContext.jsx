@@ -7,7 +7,7 @@ export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // 🔄 Load user from localStorage
+  //  Load user from localStorage
   useEffect(() => {
     try {
       const stored = localStorage.getItem("user");
@@ -22,7 +22,7 @@ export default function AuthProvider({ children }) {
     }
   }, []);
 
-  // 🔐 Login
+  //  Login
   const login = (data) => {
     const userData = {
       ...data.user,
@@ -33,13 +33,13 @@ export default function AuthProvider({ children }) {
     setUser(userData);
   };
 
-  // 🚪 Logout
+  //  Logout
   const logout = () => {
     localStorage.clear();
     setUser(null);
   };
 
-  // 🔄 Refresh user
+  //  Refresh user
   const refreshUser = async () => {
     try {
       const res = await API.get("/auth/me");

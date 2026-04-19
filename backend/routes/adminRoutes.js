@@ -4,7 +4,7 @@ import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-// 🔐 Admin only middleware
+//  Admin only middleware
 const adminOnly = (req, res, next) => {
   if (req.user.role !== "admin") {
     return res.status(403).json({ msg: "Admin only access" });
@@ -14,7 +14,7 @@ const adminOnly = (req, res, next) => {
 
 
 
-// 📥 Get all users
+//  Get all users
 router.get("/users", protect, adminOnly, async (req, res) => {
   try {
     const users = await User.find().select("-password");
@@ -26,12 +26,12 @@ router.get("/users", protect, adminOnly, async (req, res) => {
 
 
 
-// 🔄 Update subscription (ADMIN)
+//  Update subscription (ADMIN)
 router.put("/user/:id/subscription", protect, adminOnly, async (req, res) => {
   try {
     const { subscription } = req.body;
 
-    // ✅ validate
+    //  validate
     if (!["monthly", "yearly", "none"].includes(subscription)) {
       return res.status(400).json({ msg: "Invalid subscription type" });
     }
@@ -42,7 +42,7 @@ router.put("/user/:id/subscription", protect, adminOnly, async (req, res) => {
       return res.status(404).json({ msg: "User not found" });
     }
 
-    // ✅ handle subscription logic
+    //  handle subscription logic
     if (subscription === "none") {
       user.subscription = "none";
       user.subscriptionStart = null;
@@ -75,7 +75,7 @@ router.put("/user/:id/subscription", protect, adminOnly, async (req, res) => {
 
 
 
-// ❌ Delete user
+//  Delete user
 router.delete("/user/:id", protect, adminOnly, async (req, res) => {
   try {
     const user = await User.findById(req.params.id);

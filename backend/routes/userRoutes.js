@@ -4,10 +4,10 @@ import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-// 🔄 Update subscription
+//  Update subscription
 router.put("/subscription", protect, async (req, res) => {
   try {
-    console.log("USER:", req.user); // 🔥 DEBUG
+    console.log("USER:", req.user); 
 
     const { plan } = req.body;
 
@@ -47,7 +47,7 @@ router.put("/subscription", protect, async (req, res) => {
 });
 
 
-// ❤️ Update charity
+//  Update charity
 router.put("/charity", protect, async (req, res) => {
   try {
     const { name, percentage } = req.body;

@@ -9,7 +9,7 @@ export default function Scores() {
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // 📥 Fetch scores
+  //  Fetch scores
   const fetchScores = async () => {
     try {
       const res = await API.get("/scores");

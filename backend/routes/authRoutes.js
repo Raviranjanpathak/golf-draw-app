@@ -7,7 +7,7 @@ const router = express.Router();
 router.post("/register", register);
 router.post("/login", login);
 
-// ✅ Get logged-in user
+//  Get logged-in user
 router.get("/me", protect, (req, res) => {
   try {
     res.json({

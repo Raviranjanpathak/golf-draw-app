@@ -15,7 +15,7 @@ export default function Login() {
     e.preventDefault();
     setError("");
 
-    // ✅ validation
+    //  validation
     if (!form.email || !form.password) {
       return setError("All fields are required");
     }
@@ -27,7 +27,7 @@ export default function Login() {
 
       login(data);
 
-      navigate("/dashboard", { replace: true }); // ✅ better navigation
+      navigate("/dashboard", { replace: true }); //  better navigation
 
     } catch (err) {
       setError(err?.response?.data?.msg || "Login failed");

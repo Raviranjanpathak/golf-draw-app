@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import API from "../api/axios";
 
 export default function Charities() {
-  // ❤️ Select charity
+  //  Select charity
   const selectCharity = async (name) => {
     try {
       await API.put("/user/charity", {

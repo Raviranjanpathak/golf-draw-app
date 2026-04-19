@@ -11,7 +11,7 @@ const drawSchema = new mongoose.Schema(
 
           return (
             arr.length === 5 &&
-            unique.size === 5 && // ✅ no duplicates
+            unique.size === 5 && 
             arr.every((n) => n >= 1 && n <= 45)
           );
         },

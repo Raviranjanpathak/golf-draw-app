@@ -5,7 +5,7 @@ export const protect = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
 
-    // ✅ Check token format
+    //  Check token format
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return res.status(401).json({ msg: "No token, authorization denied" });
     }
@@ -16,13 +16,13 @@ export const protect = async (req, res, next) => {
       return res.status(401).json({ msg: "Token missing" });
     }
 
-    // ✅ Verify token safely
+    //  Verify token safely
     const decoded = jwt.verify(
       token,
       process.env.JWT_SECRET || "secret"
     );
 
-    // ✅ Fetch only needed fields (optimized)
+    //  Fetch only needed fields (optimized)
     const user = await User.findById(decoded.id).select(
       "_id name email role subscription subscriptionEnd charity winnings"
     );

@@ -21,10 +21,10 @@ function App() {
     <BrowserRouter>
       <Routes>
 
-        {/* ✅ PUBLIC HOME PAGE */}
+        {/*  PUBLIC HOME PAGE */}
         <Route path="/" element={<Home />} />
 
-        {/* ✅ PROTECTED ROUTES */}
+        {/*  PROTECTED ROUTES */}
         <Route
           path="/dashboard"
           element={
@@ -52,7 +52,7 @@ function App() {
           }
         />
 
-        {/* ✅ AUTH ROUTES */}
+        {/*  AUTH ROUTES */}
         <Route
           path="/login"
           element={
@@ -67,7 +67,7 @@ function App() {
           }
         />
 
-        {/* ✅ FALLBACK */}
+        {/*  FALLBACK */}
         <Route path="*" element={<Navigate to="/" />} />
 
       </Routes>

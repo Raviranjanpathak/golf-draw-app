@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom";
 export default function ProtectedRoute({ children, adminOnly = false }) {
   const { user, loading } = useContext(AuthContext);
 
-  // ⏳ Loading state
+  //  Loading state
   if (loading) {
     return (
       <div className="center-screen">
@@ -16,12 +16,12 @@ export default function ProtectedRoute({ children, adminOnly = false }) {
     );
   }
 
-  // 🚫 Not logged in
+  //  Not logged in
   if (!user) {
     return <Navigate to="/login" replace />;
   }
 
-  // 🔐 Admin check
+  //  Admin check
   if (adminOnly && user?.role !== "admin") {
     return <Navigate to="/" replace />;
   }

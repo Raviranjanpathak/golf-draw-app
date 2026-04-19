@@ -13,13 +13,13 @@ export const register = async (req, res) => {
       return res.status(400).json({ msg: "All fields are required" });
     }
 
-    // ✅ email validation
+    //  email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({ msg: "Invalid email format" });
     }
 
-    // ✅ password validation
+    //  password validation
     if (password.length < 6) {
       return res.status(400).json({
         msg: "Password must be at least 6 characters",
@@ -66,7 +66,7 @@ export const login = async (req, res) => {
   try {
     let { email, password } = req.body;
 
-    // ✅ Normalize email
+    //  Normalize email
     email = email.toLowerCase();
 
     if (!email || !password) {
@@ -75,7 +75,7 @@ export const login = async (req, res) => {
 
     const user = await User.findOne({ email });
 
-    // ✅ safer message
+    //  safer message
     if (!user) {
       return res.status(400).json({ msg: "Invalid credentials" });
     }
@@ -92,7 +92,7 @@ export const login = async (req, res) => {
       { expiresIn: "7d" }
     );
 
-    // ✅ remove password without extra query
+    //  remove password without extra query
     const safeUser = user.toObject();
     delete safeUser.password;
 

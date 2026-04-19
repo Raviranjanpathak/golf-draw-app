@@ -8,10 +8,10 @@ export default function Navbar() {
 
   const handleLogout = () => {
     logout();
-    navigate("/login", { replace: true }); // ✅ better navigation
+    navigate("/login", { replace: true }); //  better navigation
   };
 
-  // ⏳ prevent flicker
+  //  prevent flicker
   if (loading) return null;
 
   return (

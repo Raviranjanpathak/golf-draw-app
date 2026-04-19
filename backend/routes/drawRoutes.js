@@ -1,11 +1,11 @@
 import express from "express";
 import { runDraw } from "../controllers/drawController.js";
 import { protect } from "../middleware/authMiddleware.js";
-import Draw from "../models/Draw.js"; // ✅ FIX
+import Draw from "../models/Draw.js"; 
 
 const router = express.Router();
 
-// 🔐 Admin middleware
+//  Admin middleware
 const adminOnly = (req, res, next) => {
   if (req.user.role !== "admin") {
     return res.status(403).json({ msg: "Admin only access" });
@@ -13,11 +13,11 @@ const adminOnly = (req, res, next) => {
   next();
 };
 
-// 🎯 Run draw (admin)
+//  Run draw (admin)
 router.get("/", protect, adminOnly, runDraw);
 
 
-// 📤 Upload proof
+//  Upload proof
 router.post("/proof/:drawId", protect, async (req, res) => {
   try {
     const { image } = req.body;
@@ -53,7 +53,7 @@ router.post("/proof/:drawId", protect, async (req, res) => {
 });
 
 
-// ✅ Admin verify winner
+//  Admin verify winner
 router.put("/verify/:drawId/:userId", protect, adminOnly, async (req, res) => {
   try {
     const draw = await Draw.findById(req.params.drawId);

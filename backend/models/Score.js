@@ -29,10 +29,10 @@ const scoreSchema = new mongoose.Schema(
   { timestamps: true, strict: true }
 );
 
-// ✅ Prevent duplicate score per day per user
+//  Prevent duplicate score per day per user
 scoreSchema.index({ userId: 1, date: 1 }, { unique: true });
 
-// ✅ Faster sorting queries
+//  Faster sorting queries
 scoreSchema.index({ userId: 1, date: -1 });
 
 export default mongoose.model("Score", scoreSchema);

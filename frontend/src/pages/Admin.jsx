@@ -7,7 +7,7 @@ export default function Admin() {
   const [drawNumbers, setDrawNumbers] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // 📥 Fetch users
+  //  Fetch users
   const fetchUsers = async () => {
     try {
       const res = await API.get("/admin/users");
@@ -17,7 +17,7 @@ export default function Admin() {
     }
   };
 
-// 🎯 Run draw
+//  Run draw
 const runDraw = async () => {
   try {
     setLoading(true);
@@ -44,7 +44,7 @@ const runDraw = async () => {
   }
 };
 
-  // ❌ Delete user
+  //  Delete user
   const deleteUser = async (id) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this user?"

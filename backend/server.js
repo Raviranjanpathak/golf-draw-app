@@ -13,10 +13,10 @@ dotenv.config();
 
 const app = express();
 
-// 🔐 Security middleware
+
 app.use(helmet());
 
-// 🌐 CORS
+
 
 
 const allowedOrigins = [
@@ -27,21 +27,21 @@ const allowedOrigins = [
 
 app.use(cors());
 
-// 📦 Body parser
+//  Body parser
 app.use(express.json());
 
-// 🚀 Routes
+//  Routes
 app.use("/api", routes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/draw", drawRoutes);
 app.use("/api/user", userRoutes);
 
-// 🧪 Test route
+//  Test route
 app.get("/", (req, res) => {
   res.send("API running...");
 });
 
-// ❌ Global error handler
+//  Global error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({
@@ -49,7 +49,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-// 🚀 Start server AFTER DB connection
+//  Start server AFTER DB connection
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(process.env.MONGO_URI)
@@ -65,6 +65,6 @@ mongoose.connect(process.env.MONGO_URI)
     process.exit(1);
   });
   app.use((err, req, res, next) => {
-  console.error("🔥 ERROR:", err);
+  
   res.status(500).json({ error: err.message });
 });
