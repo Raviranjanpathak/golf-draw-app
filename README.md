@@ -3,6 +3,11 @@
 A full-stack web application that allows users to submit golf scores, participate in draw-based rewards, manage subscriptions, and support charities — all in one platform.
 
 ---
+## 🔐 Demo Credentials
+
+Admin Access:
+Email: admin@gmail.com  
+Password: Admin@123
 
 ## 🚀 Live Demo
 
